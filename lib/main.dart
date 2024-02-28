@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Tugas 1',
+      debugShowCheckedModeBanner: false, // remove debug
+      title: 'Tugas 1', // judul window
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue, // warna langit2 app
       ),
-      home: const Login(title: 'Demo Tugas 1'),
+      home: const Login(title: 'Demo Tugas 1'), // judul app
     );
   }
 }
@@ -32,13 +32,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _formkey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final _formkey = GlobalKey<FormState>(); // key login
+  TextEditingController emailController = TextEditingController(); // membaca data email
+  TextEditingController passwordController = TextEditingController(); // membaca data password
 
-  bool _obscureText = true;
+  bool _obscureText = true; // samarkan sandi password
 
-  void _toggle(){
+  void _toggle(){ // fungsi untuk toggle show/hide password
     setState(() {
       _obscureText = !_obscureText;
     });
@@ -52,19 +52,19 @@ class _LoginState extends State<Login> {
         title: Text(widget.title, style: TextStyle(color: Colors.white))
       ),
       body: Form(
-        key: _formkey,
-        child: Padding(
+        key: _formkey, // kunci login
+        child: Padding( // setelan dasar app
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 75),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center, // di tengah
             children: [
-              Padding(
+              Padding( // flutter logo
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 50),
                 child: FlutterLogo(
                   size: 100,
                 ),
               ),
-              Padding(
+              Padding( // form email
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: TextFormField(
                   controller: emailController,
@@ -72,7 +72,7 @@ class _LoginState extends State<Login> {
                     icon: Icon(Icons.mail),
                     border: OutlineInputBorder(), labelText: "Email",
                   ),
-                  validator: (value){
+                  validator: (value){ // validasi data
                     if (value == null || value.isEmpty){
                       return 'Mohon masukkan email anda';
                     }
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                   },
                 ),
               ),
-              Padding(
+              Padding( // form password
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: TextFormField(
                   controller: passwordController,
@@ -95,26 +95,26 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  validator: (value){
+                  validator: (value){ // validasi data
                     if (value == null || value.isEmpty){
                       return 'Mohon masukkan password anda';
                     }
                     return null;
                   },
-                  obscureText: _obscureText,
+                  obscureText: _obscureText, // tampil/sembunyikan sandi
                 ),
               ),
-              Padding(
+              Padding( // button login
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 child: Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_formkey.currentState!.validate()){
+                      if(_formkey.currentState!.validate()){ // jika data semua terisi
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Login Berhasil')),
                         );
                       } else{
-                        ScaffoldMessenger.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar( // jika ada data yang kosong
                           const SnackBar(content: Text('Data Masih Kosong')),
                         );
                       }
@@ -129,11 +129,15 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              Padding(
+              Padding( // forgot password
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Center(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar( // jika ada data yang kosong
+                        const SnackBar(content: Text('Hayoo kok lupa?')),
+                      );
+                    },
                     child: Text('Lupa Password?'),
                   ),
                 ),
