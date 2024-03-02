@@ -134,7 +134,7 @@ class _LoginState extends State<Login> {
                 child: Center(
                   child: TextButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar( // jika ada data yang kosong
+                      ScaffoldMessenger.of(context).showSnackBar( // jalankan ketika dipencet
                         const SnackBar(content: Text('Hayoo kok lupa?')),
                       );
                     },
